@@ -20,17 +20,26 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  // String? titleInput;
-  // String? amountInput;
+class HomePage extends StatefulWidget {
 
-  // final titleController = TextEditingController();
-  // final amountController = TextEditingController();
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+void startAddNewTransaction(){
+  showModalBottomSheet(context: ctx, builder: (bCtx){
+    return NewTransaction();
+  };)
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('My expenses')),
+      appBar: AppBar(
+        title: Text('My expenses'),
+        actions: [IconButton(icon: Icon(Icons.add), onPressed: () {})],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -44,6 +53,10 @@ class HomePage extends StatelessWidget {
           ),
           UserTransaction(),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.ac_unit),
       ),
     );
   }
